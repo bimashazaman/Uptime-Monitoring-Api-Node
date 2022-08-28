@@ -8,6 +8,7 @@ Date: 9/28/2022
 // Dependencies
 const http = require("http");
 const url = require("url");
+const {StringDecoder} = require('string_decoder');
 
 // App object- Module scaffolding
 const app = {};
@@ -42,8 +43,15 @@ app.handleReqRes = (req, res) => {
 
   const method = req.method.toLowerCase();
   const queryStringObject = parseUrl.query;
+  const headersObject = req.headers;
 
-  console.log(queryStringObject);
+  const decoder = new StringDecoder('utf-8');
+
+  req.on('data' ,(buffer) => {
+
+  })
+
+
 
   //Response Handle
   res.end("Hello World");
