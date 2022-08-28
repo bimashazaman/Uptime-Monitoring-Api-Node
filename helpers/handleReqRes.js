@@ -5,65 +5,63 @@ Email: developerbimasha@gmail.com
 Date: 9/28/2022
 */
 
-const { StringDecoder } = require("string_decoder");
-const url = require("url");
+const url = require('url');
+const { StringDecoder } = require('string_decoder');
+const routes = require('../routes');
+const { notFoundHandler } = require('../handlers/routeHandlers/notFoundHandler');
 
-
+// modue scaffolding
 const handler = {};
 
 handler.handleReqRes = (req, res) => {
-    //Req handle
-  
-    //Get the url and parse it
-    const parseUrl = url.parse(req.url, true);
-    const path = parseUrl.pathname;
-    const trimmedPath = path.replace(/^\+|\/+$/g, "");
+    // request handling
+    // get the url and parse it
+    const parsedUrl = url.parse(req.url, true);
+    const path = parsedUrl.pathname;
+    const trimmedPath = path.replace(/^\/+|\/+$/g, '');
     const method = req.method.toLowerCase();
-    const queryStringObject = parseUrl.query;
+    const queryStringObject = parsedUrl.query;
     const headersObject = req.headers;
-    const decoder = new StringDecoder("utf-8");
-    let realData = "";
-  
-    req.on("data", (buffer) => {
-      realData += decoder.write(buffer);
+
+    const requestProperties = {
+        parsedUrl,
+        path,
+        trimmedPath,
+        method,
+        queryStringObject,
+        headersObject,
+    };
+
+    const decoder = new StringDecoder('utf-8');
+    let realData = '';
+
+    const chosenHandler = routes[trimmedPath] ? routes[trimmedPath] : notFoundHandler;
+
+    chosenHandler(requestProperties, (statusCode, payload) => {
+        statusCode = typeof statusCode === 'number' ? statusCode : 500;
+        payload = typeof payload === 'object' ? payload : {};
+
+        const payloadString = JSON.stringify(payload);
+
+        // return the final response
+        res.writeHead(statusCode);
+        res.end(payloadString);
     });
-  
-    req.on("end", () => {
-      realData += decoder.end();
-  
-      //Response Handle
-      res.end("Hello World");
+
+    req.on('data', (buffer) => {
+        realData += decoder.write(buffer);
     });
-  };
 
+    req.on('end', () => {
+        realData += decoder.end();
 
-module.exports = handler
+        console.log(realData);
+        // response handle
+        res.end('Hello world');
+    });
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = handler;
 
 /*
 Title: Monitoring App

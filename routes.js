@@ -7,6 +7,7 @@ Date: 9/28/2022
 */
 
 const {sampleHandler} = require('./handlers/routeHandlers/sampleHandler')
+const {notFoundHandler} = require('./handlers/routeHandlers/notFoundHandler')
 
 const routes = {
       'sample': sampleHandler,

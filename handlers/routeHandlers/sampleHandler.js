@@ -9,14 +9,15 @@ Date: 9/28/2022
 
 const handler = {};
 
-handler.sampleHandler = () => {
-    console.log('HI');
-}
+handler.sampleHandler = (requestProperties, callback) => {
+    console.log(requestProperties);
 
+    callback(200, {
+        message: 'This is a sample url',
+    });
+};
 
 module.exports = handler;
-
-
 
 
 
