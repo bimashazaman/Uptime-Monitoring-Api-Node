@@ -5,34 +5,29 @@ Email: developerbimasha@gmail.com
 Date: 9/28/2022
 */
 
+const http = require('http');
+const { handleReqRes } = require('./helpers/handleReqRes');
 
-
-
-// Dependencies
-const http = require("http");
-const {handleReqRes} = require('./helpers/handleReqRes')
-
-// App object- Module scaffolding
+// app object - module scaffolding
 const app = {};
 
 // configuration
 app.config = {
-  port: 3000,
+    port: 3000,
 };
 
-//create server
-
+// create server
 app.createServer = () => {
-  const server = http.createServer(app.handleReqRes);
-  server.listen(app.config.port, () => {
-    console.log("Server is listening on 3000");
-  });
+    const server = http.createServer(app.handleReqRes);
+    server.listen(app.config.port, () => {
+        console.log(`listening to port ${app.config.port}`);
+    });
 };
 
-//handle Request Response
+// handle Request Response
 app.handleReqRes = handleReqRes;
 
-//start the server
+// start the server
 app.createServer();
 
 /*
