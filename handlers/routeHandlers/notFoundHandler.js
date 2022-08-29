@@ -1,11 +1,9 @@
-
 /*
-Title: Not Found handler
 Author: Bimasha Zaman
 Email: developerbimasha@gmail.com
 Date: 9/28/2022
 */
-
+// module scaffolding
 const handler = {};
 
 handler.notFoundHandler = (requestProperties, callback) => {
@@ -15,22 +13,3 @@ handler.notFoundHandler = (requestProperties, callback) => {
 };
 
 module.exports = handler;
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-Title: Not Found handler
-Author: Bimasha Zaman
-Email: developerbimasha@gmail.com
-Date: 9/28/2022
-*/

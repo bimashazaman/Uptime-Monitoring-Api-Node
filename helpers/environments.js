@@ -1,11 +1,8 @@
 /*
- * Title: Environments
- * Description: Handle all environment related things
- * Author: Sumit Saha ( Learn with Sumit )
- * Date: 11/20/2020
- *
- */
-
+Author: Bimasha Zaman
+Email: developerbimasha@gmail.com
+Date: 9/28/2022
+*/
 // dependencies
 
 // module scaffolding

@@ -1,12 +1,9 @@
-
 /*
-Title: Sample handler
 Author: Bimasha Zaman
 Email: developerbimasha@gmail.com
 Date: 9/28/2022
 */
-
-
+// module scaffolding
 const handler = {};
 
 handler.sampleHandler = (requestProperties, callback) => {
@@ -18,21 +15,3 @@ handler.sampleHandler = (requestProperties, callback) => {
 };
 
 module.exports = handler;
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-Title: Sample handler
-Author: Bimasha Zaman
-Email: developerbimasha@gmail.com
-Date: 9/28/2022
-*/
